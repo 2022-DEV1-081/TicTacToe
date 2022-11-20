@@ -12,6 +12,8 @@ public class GameService {
 
     private static final int ZERO = 0;
     private final GameBoard gameBoard;
+    private char previousPlayer;
+
 
     public GameService(GameBoard gameBoard) {
         this.gameBoard = gameBoard;
@@ -21,9 +23,16 @@ public class GameService {
 
         if (isFirstTurn() && isPlayerO(player)) {
             throw new InvalidTurnException("Player X should move first");
+        } else if (isSamePlayerPlayingConsecutiveTurns(player)) {
+            throw new InvalidTurnException(String.format("Player %s's turn now", player));
         }
         gameBoard.setPlayerInPosition(Position.getRowColumnValueOfPosition(position), player);
+        previousPlayer = player.getValue();
         return new GameResponse("GAME_IN_PROGRESS", getNextPlayer(player), player);
+    }
+
+    private boolean isSamePlayerPlayingConsecutiveTurns(Player player) {
+        return previousPlayer == player.getValue();
     }
 
     private boolean isFirstTurn() {
