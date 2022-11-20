@@ -1,15 +1,10 @@
 package com.game.tictactoe.controller;
 
-import com.game.tictactoe.domain.ErrorResponse;
 import com.game.tictactoe.domain.GameResponse;
 import com.game.tictactoe.domain.Player;
-import com.game.tictactoe.exception.InvalidPositionException;
-import com.game.tictactoe.exception.InvalidTurnException;
-import com.game.tictactoe.exception.PositionOccupiedException;
 import com.game.tictactoe.service.GameService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,20 +23,5 @@ public class GameController {
                                                         @PathVariable(name = "position") int position) {
 
         return ResponseEntity.status(HttpStatus.OK).body(gameService.playGame(player, position));
-    }
-
-    @ExceptionHandler(value = InvalidTurnException.class)
-    public ResponseEntity<ErrorResponse> handleInvalidTurnException(InvalidTurnException ex) {
-        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new ErrorResponse(ex.getMessage()));
-    }
-
-    @ExceptionHandler(value = PositionOccupiedException.class)
-    public ResponseEntity<ErrorResponse> handlePositionOccupiedException(PositionOccupiedException ex) {
-        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new ErrorResponse(ex.getMessage()));
-    }
-
-    @ExceptionHandler(value = InvalidPositionException.class)
-    public ResponseEntity<ErrorResponse> handleInvalidPositionException(InvalidPositionException ex) {
-        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new ErrorResponse(ex.getMessage()));
     }
 }
