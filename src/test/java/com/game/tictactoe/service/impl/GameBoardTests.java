@@ -1,6 +1,7 @@
 package com.game.tictactoe.service.impl;
 
 import com.game.tictactoe.domain.Player;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
@@ -10,10 +11,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(MockitoJUnitRunner.class)
 public class GameBoardTests {
 
+    private GameBoard gameBoard;
+
+    @Before
+    public void setUp() {
+        gameBoard = new GameBoard();
+    }
+
     @Test
     public void shouldSaveInputValueOnGameBoard() {
-
-        GameBoard gameBoard = new GameBoard();
 
         gameBoard.setPlayerInPosition(0, 1, Player.X);
 
@@ -22,8 +28,6 @@ public class GameBoardTests {
 
     @Test
     public void getCountPositionsOccupiedOnGameBoard() {
-
-        GameBoard gameBoard = new GameBoard();
 
         assertThat(gameBoard.getCountOfPositionsOccupied()).isZero();
     }
