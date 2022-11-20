@@ -23,6 +23,14 @@ public class GameService {
 
     public GameResponse playGame(Player player, int position) {
 
+        validateCurrentTurn(player, position);
+        gameBoard.setPlayerInPosition(Position.getRowColumnValueOfPosition(position), player);
+        previousPlayer = player.getValue();
+        return new GameResponse("GAME_IN_PROGRESS", getNextPlayer(player), player);
+    }
+
+    private void validateCurrentTurn(Player player, int position) {
+
         if (Position.getRowColumnValueOfPosition(position) == Position.DEFAULT) {
             throw new InvalidPositionException("Input position is invalid. Please provide position in range of 1-9");
         } else if (isFirstTurn() && isPlayerO(player)) {
@@ -32,9 +40,6 @@ public class GameService {
         } else if (gameBoard.getPlayerInPosition(Position.getRowColumnValueOfPosition(position)) != ZERO) {
             throw new PositionOccupiedException(String.format("Position %s is already occupied", position));
         }
-        gameBoard.setPlayerInPosition(Position.getRowColumnValueOfPosition(position), player);
-        previousPlayer = player.getValue();
-        return new GameResponse("GAME_IN_PROGRESS", getNextPlayer(player), player);
     }
 
     private boolean isSamePlayerPlayingConsecutiveTurns(Player player) {
