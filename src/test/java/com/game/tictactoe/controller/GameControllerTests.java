@@ -1,5 +1,6 @@
 package com.game.tictactoe.controller;
 
+import com.game.tictactoe.domain.GameResponse;
 import com.game.tictactoe.domain.Player;
 import com.game.tictactoe.exception.InvalidTurnException;
 import com.game.tictactoe.service.GameService;
@@ -28,7 +29,8 @@ public class GameControllerTests {
     @Test
     public void playGameAPIShouldGive200Response() throws Exception {
 
-        when(gameService.playGame(Player.X, 0, 0)).thenReturn("Player X moved first");
+        when(gameService.playGame(Player.X, 0, 0))
+                .thenReturn(new GameResponse("GAME_IN_PROGRESS", Player.O, Player.X));
 
         mvc.perform(post("/tic-tac-toe/play/{player}/{row}/{column}", Player.X, 0, 0))
                 .andExpect(status().isOk());

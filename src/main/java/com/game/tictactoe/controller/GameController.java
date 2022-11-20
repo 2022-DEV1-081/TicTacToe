@@ -1,6 +1,7 @@
 package com.game.tictactoe.controller;
 
 import com.game.tictactoe.domain.ErrorResponse;
+import com.game.tictactoe.domain.GameResponse;
 import com.game.tictactoe.domain.Player;
 import com.game.tictactoe.exception.InvalidTurnException;
 import com.game.tictactoe.service.GameService;
@@ -21,9 +22,9 @@ public class GameController {
     }
 
     @PostMapping(value = "/tic-tac-toe/play/{player}/{row}/{column}")
-    public ResponseEntity<String> playGameHandler(@PathVariable(name = "player") Player player,
-                                                  @PathVariable(name = "row") int row,
-                                                  @PathVariable(name = "column") int column) {
+    public ResponseEntity<GameResponse> playGameHandler(@PathVariable(name = "player") Player player,
+                                                        @PathVariable(name = "row") int row,
+                                                        @PathVariable(name = "column") int column) {
 
         return ResponseEntity.status(HttpStatus.OK).body(gameService.playGame(player, row, column));
     }
