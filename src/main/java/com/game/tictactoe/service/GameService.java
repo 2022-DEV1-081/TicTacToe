@@ -24,9 +24,14 @@ public class GameService {
     public GameResponse playGame(Player player, int position) {
 
         validateCurrentTurn(player, position);
+        savePlayerOnBoard(player, position);
+        return new GameResponse("GAME_IN_PROGRESS", getNextPlayer(player), player);
+    }
+
+    private void savePlayerOnBoard(Player player, int position) {
+
         gameBoard.setPlayerInPosition(Position.getRowColumnValueOfPosition(position), player);
         previousPlayer = player.getValue();
-        return new GameResponse("GAME_IN_PROGRESS", getNextPlayer(player), player);
     }
 
     private void validateCurrentTurn(Player player, int position) {
