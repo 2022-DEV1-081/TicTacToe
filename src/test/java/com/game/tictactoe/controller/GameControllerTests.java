@@ -28,18 +28,19 @@ public class GameControllerTests {
     @Test
     public void playGameAPIShouldGive200Response() throws Exception {
 
-        when(gameService.playGame(Player.X)).thenReturn("Player X moved first");
+        when(gameService.playGame(Player.X, 0, 0)).thenReturn("Player X moved first");
 
-        mvc.perform(post("/tic-tac-toe/play/{player}", Player.X))
+        mvc.perform(post("/tic-tac-toe/play/{player}/{row}/{column}", Player.X, 0, 0))
                 .andExpect(status().isOk());
     }
 
     @Test
     public void shouldShow403HttpStatusWhenInValidExceptionIsThrown() throws Exception {
 
-        when(gameService.playGame(Player.O)).thenThrow(new InvalidTurnException("Player X should move first"));
+        when(gameService.playGame(Player.O, 0, 1))
+                .thenThrow(new InvalidTurnException("Player X should move first"));
 
-        mvc.perform(post("/tic-tac-toe/play/{player}", Player.O))
+        mvc.perform(post("/tic-tac-toe/play/{player}/{row}/{column}", Player.O, 0, 1))
                 .andExpect(status().isForbidden());
     }
 }
