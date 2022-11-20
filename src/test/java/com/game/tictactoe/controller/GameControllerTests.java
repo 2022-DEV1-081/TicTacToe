@@ -1,5 +1,6 @@
 package com.game.tictactoe.controller;
 
+import com.game.tictactoe.exception.InvalidTurnException;
 import com.game.tictactoe.service.GameService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,5 +31,14 @@ public class GameControllerTests {
 
         mvc.perform(post("/tic-tac-toe/play/{player}", 'X'))
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    public void shouldShow403HttpStatusWhenInValidExceptionIsThrown() throws Exception {
+
+        when(gameService.playGame('O')).thenThrow(new InvalidTurnException("Player X should move first"));
+
+        mvc.perform(post("/tic-tac-toe/play/{player}", 'O'))
+                .andExpect(status().isForbidden());
     }
 }
