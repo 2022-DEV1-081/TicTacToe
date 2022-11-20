@@ -39,6 +39,6 @@ public class GameServiceTests {
 
         gameService.playGame(Player.X, 0, 2);
 
-        assertThat(gameBoard.getValueOnBoard(0, 2)).isEqualTo(Player.X.getValue());
+        assertThat(gameBoard.getPlayerInPosition(0, 2)).isEqualTo(Player.X.getValue());
     }
 }

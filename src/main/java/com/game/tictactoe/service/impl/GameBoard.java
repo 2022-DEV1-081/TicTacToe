@@ -8,11 +8,11 @@ public class GameBoard {
 
     private char[][] board = new char[3][3];
 
-    public void setValueOnBoard(int row, int column, Player player) {
+    public void setPlayerInPosition(int row, int column, Player player) {
         board[row][column] = player.getValue();
     }
 
-    public char getValueOnBoard(int row, int column) {
+    public char getPlayerInPosition(int row, int column) {
         return board[row][column];
     }
 }

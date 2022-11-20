@@ -15,8 +15,8 @@ public class GameBoardTests {
 
         GameBoard gameBoard = new GameBoard();
 
-        gameBoard.setValueOnBoard(0, 1, Player.X);
+        gameBoard.setPlayerInPosition(0, 1, Player.X);
 
-        assertThat(gameBoard.getValueOnBoard(0, 1)).isEqualTo(Player.X.getValue());
+        assertThat(gameBoard.getPlayerInPosition(0, 1)).isEqualTo(Player.X.getValue());
     }
 }
