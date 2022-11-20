@@ -1,5 +1,6 @@
 package com.game.tictactoe.controller;
 
+import com.game.tictactoe.domain.Player;
 import com.game.tictactoe.exception.InvalidTurnException;
 import com.game.tictactoe.service.GameService;
 import org.junit.Test;
@@ -27,18 +28,18 @@ public class GameControllerTests {
     @Test
     public void xShouldAlwaysGoFirst() throws Exception {
 
-        when(gameService.playGame('X')).thenReturn("Player X moved first");
+        when(gameService.playGame(Player.X)).thenReturn("Player X moved first");
 
-        mvc.perform(post("/tic-tac-toe/play/{player}", 'X'))
+        mvc.perform(post("/tic-tac-toe/play/{player}", Player.X))
                 .andExpect(status().isOk());
     }
 
     @Test
     public void shouldShow403HttpStatusWhenInValidExceptionIsThrown() throws Exception {
 
-        when(gameService.playGame('O')).thenThrow(new InvalidTurnException("Player X should move first"));
+        when(gameService.playGame(Player.O)).thenThrow(new InvalidTurnException("Player X should move first"));
 
-        mvc.perform(post("/tic-tac-toe/play/{player}", 'O'))
+        mvc.perform(post("/tic-tac-toe/play/{player}", Player.O))
                 .andExpect(status().isForbidden());
     }
 }

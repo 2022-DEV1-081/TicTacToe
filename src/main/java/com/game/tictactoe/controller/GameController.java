@@ -1,6 +1,7 @@
 package com.game.tictactoe.controller;
 
 import com.game.tictactoe.domain.ErrorResponse;
+import com.game.tictactoe.domain.Player;
 import com.game.tictactoe.exception.InvalidTurnException;
 import com.game.tictactoe.service.GameService;
 import org.springframework.http.HttpStatus;
@@ -20,7 +21,7 @@ public class GameController {
     }
 
     @PostMapping(value = "/tic-tac-toe/play/{player}")
-    public ResponseEntity<String> playGameHandler(@PathVariable(name = "player") char player) {
+    public ResponseEntity<String> playGameHandler(@PathVariable(name = "player") Player player) {
 
         return ResponseEntity.status(HttpStatus.OK).body(gameService.playGame(player));
     }
