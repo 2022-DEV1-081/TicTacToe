@@ -4,6 +4,7 @@ import com.game.tictactoe.domain.GameResponse;
 import com.game.tictactoe.domain.Player;
 import com.game.tictactoe.domain.Position;
 import com.game.tictactoe.exception.InvalidTurnException;
+import com.game.tictactoe.exception.PositionOccupiedException;
 import com.game.tictactoe.service.GameService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -44,6 +45,16 @@ public class GameControllerTests {
                 .thenThrow(new InvalidTurnException("Player X should move first"));
 
         mvc.perform(post("/tic-tac-toe/play/{player}/{position}", Player.O, Position.TWO.getValue()))
+                .andExpect(status().isForbidden());
+    }
+
+    @Test
+    public void shouldShow403HttpStatusWhenPositionOccupiedExceptionIsThrown() throws Exception {
+
+        when(gameService.playGame(Player.X, Position.FIVE.getValue()))
+                .thenThrow(new PositionOccupiedException("Position %s is already occupied"));
+
+        mvc.perform(post("/tic-tac-toe/play/{player}/{position}", Player.X, Position.FIVE.getValue()))
                 .andExpect(status().isForbidden());
     }
 }

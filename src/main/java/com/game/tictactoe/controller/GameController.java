@@ -4,6 +4,7 @@ import com.game.tictactoe.domain.ErrorResponse;
 import com.game.tictactoe.domain.GameResponse;
 import com.game.tictactoe.domain.Player;
 import com.game.tictactoe.exception.InvalidTurnException;
+import com.game.tictactoe.exception.PositionOccupiedException;
 import com.game.tictactoe.service.GameService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +31,11 @@ public class GameController {
 
     @ExceptionHandler(value = InvalidTurnException.class)
     public ResponseEntity<ErrorResponse> handleInvalidTurnException(InvalidTurnException ex) {
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new ErrorResponse(ex.getMessage()));
+    }
+
+    @ExceptionHandler(value = PositionOccupiedException.class)
+    public ResponseEntity<ErrorResponse> handlePositionOccupiedException(PositionOccupiedException ex) {
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new ErrorResponse(ex.getMessage()));
     }
 }
