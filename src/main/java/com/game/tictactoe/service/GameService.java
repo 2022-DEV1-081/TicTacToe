@@ -3,6 +3,7 @@ package com.game.tictactoe.service;
 import com.game.tictactoe.domain.GameResponse;
 import com.game.tictactoe.domain.Player;
 import com.game.tictactoe.domain.Position;
+import com.game.tictactoe.exception.InvalidPositionException;
 import com.game.tictactoe.exception.InvalidTurnException;
 import com.game.tictactoe.exception.PositionOccupiedException;
 import com.game.tictactoe.service.impl.GameBoard;
@@ -22,7 +23,9 @@ public class GameService {
 
     public GameResponse playGame(Player player, int position) {
 
-        if (isFirstTurn() && isPlayerO(player)) {
+        if (Position.getRowColumnValueOfPosition(position) == Position.DEFAULT) {
+            throw new InvalidPositionException("Input position is invalid. Please provide position in range of 1-9");
+        } else if (isFirstTurn() && isPlayerO(player)) {
             throw new InvalidTurnException("Player X should move first");
         } else if (isSamePlayerPlayingConsecutiveTurns(player)) {
             throw new InvalidTurnException(String.format("Player %s's turn now", player));
