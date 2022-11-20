@@ -26,7 +26,7 @@ public class GameControllerTests {
     private GameService gameService;
 
     @Test
-    public void xShouldAlwaysGoFirst() throws Exception {
+    public void playGameAPIShouldGive200Response() throws Exception {
 
         when(gameService.playGame(Player.X)).thenReturn("Player X moved first");
 
