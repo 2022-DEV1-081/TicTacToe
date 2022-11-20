@@ -1,6 +1,7 @@
 package com.game.tictactoe.service.impl;
 
 import com.game.tictactoe.domain.Player;
+import com.game.tictactoe.domain.Position;
 import org.springframework.stereotype.Service;
 
 import java.nio.CharBuffer;
@@ -12,12 +13,12 @@ public class GameBoard {
     private static final int EMPTY_POSITION_ON_BOARD = 0;
     private char[][] board = new char[3][3];
 
-    public void setPlayerInPosition(int row, int column, Player player) {
-        board[row][column] = player.getValue();
+    public void setPlayerInPosition(Position position, Player player) {
+        board[position.getRow()][position.getColumn()] = player.getValue();
     }
 
-    public char getPlayerInPosition(int row, int column) {
-        return board[row][column];
+    public char getPlayerInPosition(Position position) {
+        return board[position.getRow()][position.getColumn()];
     }
 
     public int getCountOfPositionsOccupied() {

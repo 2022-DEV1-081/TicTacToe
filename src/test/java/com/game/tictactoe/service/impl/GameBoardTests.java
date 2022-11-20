@@ -1,6 +1,7 @@
 package com.game.tictactoe.service.impl;
 
 import com.game.tictactoe.domain.Player;
+import com.game.tictactoe.domain.Position;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,9 +22,9 @@ public class GameBoardTests {
     @Test
     public void shouldSaveInputValueOnGameBoard() {
 
-        gameBoard.setPlayerInPosition(0, 1, Player.X);
+        gameBoard.setPlayerInPosition(Position.TWO, Player.X);
 
-        assertThat(gameBoard.getPlayerInPosition(0, 1)).isEqualTo(Player.X.getValue());
+        assertThat(gameBoard.getPlayerInPosition(Position.TWO)).isEqualTo(Player.X.getValue());
     }
 
     @Test

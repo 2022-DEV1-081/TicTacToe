@@ -1,6 +1,7 @@
 package com.game.tictactoe.service;
 
 import com.game.tictactoe.domain.Player;
+import com.game.tictactoe.domain.Position;
 import com.game.tictactoe.exception.InvalidTurnException;
 import com.game.tictactoe.service.impl.GameBoard;
 import org.junit.Before;
@@ -25,20 +26,20 @@ public class GameServiceTests {
     @Test
     public void playerXShouldAlwaysGoFirst() {
 
-        assertThat(gameService.playGame(Player.X, 0, 0).getCurrentPlayer()).isEqualTo(Player.X);
+        assertThat(gameService.playGame(Player.X, Position.ONE.getValue()).getCurrentPlayer()).isEqualTo(Player.X);
     }
 
     @Test(expected = InvalidTurnException.class)
     public void shouldThrowInvalidTurnExceptionIfOMovesFirst() {
 
-        gameService.playGame(Player.O, 0, 1);
+        gameService.playGame(Player.O, Position.TWO.getValue());
     }
 
     @Test
     public void getPositionFromPlayerAndSaveOnGameBoard() {
 
-        gameService.playGame(Player.X, 0, 2);
+        gameService.playGame(Player.X, Position.THREE.getValue());
 
-        assertThat(gameBoard.getPlayerInPosition(0, 2)).isEqualTo(Player.X.getValue());
+        assertThat(gameBoard.getPlayerInPosition(Position.THREE)).isEqualTo(Player.X.getValue());
     }
 }

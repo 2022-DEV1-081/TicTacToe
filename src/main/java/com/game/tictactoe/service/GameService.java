@@ -2,6 +2,7 @@ package com.game.tictactoe.service;
 
 import com.game.tictactoe.domain.GameResponse;
 import com.game.tictactoe.domain.Player;
+import com.game.tictactoe.domain.Position;
 import com.game.tictactoe.exception.InvalidTurnException;
 import com.game.tictactoe.service.impl.GameBoard;
 import org.springframework.stereotype.Service;
@@ -16,12 +17,12 @@ public class GameService {
         this.gameBoard = gameBoard;
     }
 
-    public GameResponse playGame(Player player, int row, int column) {
+    public GameResponse playGame(Player player, int position) {
 
         if (isFirstTurn() && isPlayerO(player)) {
             throw new InvalidTurnException("Player X should move first");
         }
-        gameBoard.setPlayerInPosition(row, column, player);
+        gameBoard.setPlayerInPosition(Position.getRowColumnValueOfPosition(position), player);
         return new GameResponse("GAME_IN_PROGRESS", getNextPlayer(player), player);
     }
 

@@ -21,12 +21,11 @@ public class GameController {
         this.gameService = gameService;
     }
 
-    @PostMapping(value = "/tic-tac-toe/play/{player}/{row}/{column}")
+    @PostMapping(value = "/tic-tac-toe/play/{player}/{position}")
     public ResponseEntity<GameResponse> playGameHandler(@PathVariable(name = "player") Player player,
-                                                        @PathVariable(name = "row") int row,
-                                                        @PathVariable(name = "column") int column) {
+                                                        @PathVariable(name = "position") int position) {
 
-        return ResponseEntity.status(HttpStatus.OK).body(gameService.playGame(player, row, column));
+        return ResponseEntity.status(HttpStatus.OK).body(gameService.playGame(player, position));
     }
 
     @ExceptionHandler(value = InvalidTurnException.class)
