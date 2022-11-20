@@ -3,6 +3,7 @@ package com.game.tictactoe.controller;
 import com.game.tictactoe.domain.GameResponse;
 import com.game.tictactoe.domain.Player;
 import com.game.tictactoe.domain.Position;
+import com.game.tictactoe.exception.InvalidPositionException;
 import com.game.tictactoe.exception.InvalidTurnException;
 import com.game.tictactoe.exception.PositionOccupiedException;
 import com.game.tictactoe.service.GameService;
@@ -14,6 +15,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -55,6 +57,16 @@ public class GameControllerTests {
                 .thenThrow(new PositionOccupiedException("Position %s is already occupied"));
 
         mvc.perform(post("/tic-tac-toe/play/{player}/{position}", Player.X, Position.FIVE.getValue()))
+                .andExpect(status().isForbidden());
+    }
+
+    @Test
+    public void shouldShow403HttpStatusWhenInvalidPositionExceptionIsThrown() throws Exception {
+
+        when(gameService.playGame(Player.X, Position.DEFAULT.getValue()))
+                .thenThrow(new InvalidPositionException("Position %s is already occupied"));
+
+        mvc.perform(post("/tic-tac-toe/play/{player}/{position}", Player.X, Position.DEFAULT.getValue()))
                 .andExpect(status().isForbidden());
     }
 }
