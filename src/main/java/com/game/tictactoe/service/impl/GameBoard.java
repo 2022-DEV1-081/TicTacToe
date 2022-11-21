@@ -53,73 +53,58 @@ public class GameBoard {
 
     protected boolean isFirstRowOccupiedBySamePlayer() {
 
-        if (getPlayerInPosition(Position.ONE) != EMPTY_POSITION_ON_BOARD) {
-            return (getPlayerInPosition(Position.ONE) == getPlayerInPosition(Position.TWO) &&
-                    getPlayerInPosition(Position.TWO) == getPlayerInPosition(Position.THREE));
-        }
-        return false;
+        return (getPlayerInPosition(Position.ONE) != EMPTY_POSITION_ON_BOARD) &&
+                (getPlayerInPosition(Position.ONE) == getPlayerInPosition(Position.TWO)
+                        && getPlayerInPosition(Position.TWO) == getPlayerInPosition(Position.THREE));
+
     }
 
     protected boolean isSecondRowOccupiedBySamePlayer() {
 
-        if (getPlayerInPosition(Position.FOUR) != EMPTY_POSITION_ON_BOARD) {
-            return (getPlayerInPosition(Position.FOUR) == getPlayerInPosition(Position.FIVE) &&
-                    getPlayerInPosition(Position.FIVE) == getPlayerInPosition(Position.SIX));
-        }
-        return false;
+        return (getPlayerInPosition(Position.FOUR) != EMPTY_POSITION_ON_BOARD) &&
+                (getPlayerInPosition(Position.FOUR) == getPlayerInPosition(Position.FIVE)
+                        && getPlayerInPosition(Position.FIVE) == getPlayerInPosition(Position.SIX));
     }
 
     protected boolean isThirdRowOccupiedBySamePlayer() {
 
-        if (getPlayerInPosition(Position.SEVEN) != EMPTY_POSITION_ON_BOARD) {
-            return (getPlayerInPosition(Position.SEVEN) == getPlayerInPosition(Position.EIGHT) &&
-                    getPlayerInPosition(Position.EIGHT) == getPlayerInPosition(Position.NINE));
-        }
-        return false;
+        return (getPlayerInPosition(Position.SEVEN) != EMPTY_POSITION_ON_BOARD) &&
+                (getPlayerInPosition(Position.SEVEN) == getPlayerInPosition(Position.EIGHT)
+                        && getPlayerInPosition(Position.EIGHT) == getPlayerInPosition(Position.NINE));
     }
 
     protected boolean isFirstColumnOccupiedBySamePlayer() {
 
-        if (getPlayerInPosition(Position.ONE) != EMPTY_POSITION_ON_BOARD) {
-            return (getPlayerInPosition(Position.ONE) == getPlayerInPosition(Position.FOUR) &&
-                    getPlayerInPosition(Position.FOUR) == getPlayerInPosition(Position.SEVEN));
-        }
-        return false;
+        return (getPlayerInPosition(Position.ONE) != EMPTY_POSITION_ON_BOARD) &&
+                (getPlayerInPosition(Position.ONE) == getPlayerInPosition(Position.FOUR)
+                        && getPlayerInPosition(Position.FOUR) == getPlayerInPosition(Position.SEVEN));
     }
 
     protected boolean isSecondColumnOccupiedBySamePlayer() {
 
-        if (getPlayerInPosition(Position.TWO) != EMPTY_POSITION_ON_BOARD) {
-            return (getPlayerInPosition(Position.TWO) == getPlayerInPosition(Position.FIVE) &&
-                    getPlayerInPosition(Position.FIVE) == getPlayerInPosition(Position.EIGHT));
-        }
-        return false;
+        return (getPlayerInPosition(Position.TWO) != EMPTY_POSITION_ON_BOARD) &&
+                (getPlayerInPosition(Position.TWO) == getPlayerInPosition(Position.FIVE)
+                        && getPlayerInPosition(Position.FIVE) == getPlayerInPosition(Position.EIGHT));
     }
 
     protected boolean isThirdColumnOccupiedBySamePlayer() {
 
-        if (getPlayerInPosition(Position.THREE) != EMPTY_POSITION_ON_BOARD) {
-            return (getPlayerInPosition(Position.THREE) == getPlayerInPosition(Position.SIX) &&
-                    getPlayerInPosition(Position.SIX) == getPlayerInPosition(Position.NINE));
-        }
-        return false;
+        return (getPlayerInPosition(Position.THREE) != EMPTY_POSITION_ON_BOARD) &&
+                (getPlayerInPosition(Position.THREE) == getPlayerInPosition(Position.SIX)
+                        && getPlayerInPosition(Position.SIX) == getPlayerInPosition(Position.NINE));
     }
 
     protected boolean isFirstDiagonalOccupiedBySamePlayer() {
 
-        if (getPlayerInPosition(Position.ONE) != EMPTY_POSITION_ON_BOARD) {
-            return (getPlayerInPosition(Position.ONE) == getPlayerInPosition(Position.FIVE) &&
-                    getPlayerInPosition(Position.FIVE) == getPlayerInPosition(Position.NINE));
-        }
-        return false;
+        return (getPlayerInPosition(Position.ONE) != EMPTY_POSITION_ON_BOARD) &&
+                (getPlayerInPosition(Position.ONE) == getPlayerInPosition(Position.FIVE)
+                        && getPlayerInPosition(Position.FIVE) == getPlayerInPosition(Position.NINE));
     }
 
     protected boolean isSecondDiagonalOccupiedBySamePlayer() {
 
-        if (getPlayerInPosition(Position.THREE) != EMPTY_POSITION_ON_BOARD) {
-            return (getPlayerInPosition(Position.THREE) == getPlayerInPosition(Position.FIVE) &&
-                    getPlayerInPosition(Position.FIVE) == getPlayerInPosition(Position.SEVEN));
-        }
-        return false;
+        return (getPlayerInPosition(Position.THREE) != EMPTY_POSITION_ON_BOARD) &&
+                (getPlayerInPosition(Position.THREE) == getPlayerInPosition(Position.FIVE)
+                        && getPlayerInPosition(Position.FIVE) == getPlayerInPosition(Position.SEVEN));
     }
 }
