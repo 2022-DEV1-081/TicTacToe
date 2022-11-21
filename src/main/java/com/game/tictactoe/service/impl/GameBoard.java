@@ -29,4 +29,13 @@ public class GameBoard {
                 .filter(position -> position != EMPTY_POSITION_ON_BOARD)
                 .count();
     }
+
+    public boolean isFirstRowOccupiedBySamePlayer() {
+
+        if (getPlayerInPosition(Position.ONE) != EMPTY_POSITION_ON_BOARD) {
+            return (getPlayerInPosition(Position.ONE) == getPlayerInPosition(Position.TWO) &&
+                    getPlayerInPosition(Position.TWO) == getPlayerInPosition(Position.THREE));
+        }
+        return false;
+    }
 }
