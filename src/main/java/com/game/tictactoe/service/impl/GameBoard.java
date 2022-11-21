@@ -91,4 +91,13 @@ public class GameBoard {
         }
         return false;
     }
+
+    public boolean isFirstDiagonalOccupiedBySamePlayer() {
+
+        if (getPlayerInPosition(Position.ONE) != EMPTY_POSITION_ON_BOARD) {
+            return (getPlayerInPosition(Position.ONE) == getPlayerInPosition(Position.FIVE) &&
+                    getPlayerInPosition(Position.FIVE) == getPlayerInPosition(Position.NINE));
+        }
+        return false;
+    }
 }
