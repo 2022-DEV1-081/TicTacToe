@@ -23,6 +23,9 @@ public class GameService {
 
     public GameResponse playGame(Player player, int position) {
 
+        if(isFirstTurn()) {
+            gameBoard.initializeGameBoard();
+        }
         validateCurrentTurn(player, position);
         savePlayerOnBoard(player, position);
         return validateGameAndSendResponse(player);
