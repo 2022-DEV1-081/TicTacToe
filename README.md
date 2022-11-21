@@ -1,7 +1,7 @@
 # **Tic Tac Toe**
 
-Tic Tac Toe, X's and O's or CROSS and NOUGHTS is a game for two players, X and O, who take turns marking the spaces in a
-3X3 matrix as depicted below. The player who places three of their marks in a horizontal, vertical, or diagonal
+Tic Tac Toe, X's and O's or CROSS and NOUGHTS is a game for two players, X and O, who take turns marking the positions
+in a 3X3 matrix as depicted below. The player who places three of their marks in a horizontal, vertical, or diagonal
 row [either from right top to left bottom or left top to right bottom ] is the winner. Game result will be declared as '
 Tie' when all the positions in game board are marked.
 
@@ -23,22 +23,29 @@ The rules are described below :
     - One player has three in a row, horizontally, vertically or diagonally
     - All nine squares are filled
 - If a player is able to draw three X’s or three O’s in a row, that player wins
-- If all nine squares are filled and neither player has three in a row, the game is a draw
+- If all nine squares are filled and neither player has three in a row, the game is a tie
 
 ## **Purpose**
+
 Develop a simple Tic Tac Toe game written in Java and Spring Boot using Test Driven Development (TDD) process.
 
 ## **Prerequisites**
-- Java 
-- Spring Boot 2.7.5
-- Gradle 7.5.1
+
+- Java Version - 1.8 or above
+- JRE Compliance - 1.8 or above
+- Spring Boot - 2.7.5
+- Gradle - 7.5.1
+- Intellij - Any IDE that supports Java
 
 ## **How to build the application**
-1. Clone this repository ```https://github.com/2022-DEV1-081/TicTacToe.git```
-2. You can build the project and run the tests by running ```gradlew clean build```
+
+1. Clone this repository ``` https://github.com/2022-DEV1-081/TicTacToe.git ```
+2. You can build the project and run the tests by running ``` gradlew clean build ```
 
 ## **How to run the application**
-- By default, the application will start on port 8080. If you want the application to run on different port 8082, you can pass additional parameter --server.port=8082 while starting the application
+
+- By default, the application will start on port 8080. If you want the application to run on different port 8082, you
+  can pass additional parameter --server.port=8082 while starting the application
 - Once successfully built, you can run the service by using one of below commands:
 
 ```
@@ -49,12 +56,23 @@ Develop a simple Tic Tac Toe game written in Java and Spring Boot using Test Dri
   java -jar build/libs/TicTacToe.jar --server.port=8082
 ```
 
+## **Steps to play the game**
+
+1. Start the application in local machine and use the below swagger link to play the game
+   - http://localhost:8080/swagger-ui/index.html#/
+2. Use Play Tic Tac Toe Game API to play the game. Request body contains two fields - player and position 
+   (Refer $root/src/test/resources/GameRequest.json for sample request body)
+   - Input value for player - X or O (Only uppercase allowed)
+   - Input range for position - 1 to 9
+4. Reset Tic Tac Toe Game API can be used to reset the game at anypoint of time
+
 ## **How to access the code coverage report**
 
-Please follow below-mentioned steps to access code coverage report.
+Please follow the below-mentioned steps to access code coverage report.
 
 1. Clone the repository ```https://github.com/2022-DEV1-081/TicTacToe.git```
-2. Open CMD or Git Bash Terminal
-   - `gradlew clean build`
+2. Open CMD or Git Bash Terminal and run the below command
+    - `gradlew clean build`
 3. After successful build, you can find the report in below path
-   - $buildDir/reports/jacoco/index.html
+    - $buildDir/reports/jacoco/index.html
+
