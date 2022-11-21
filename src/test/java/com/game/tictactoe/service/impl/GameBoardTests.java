@@ -118,4 +118,17 @@ public class GameBoardTests {
 
         assertThat(gameBoard.isFirstDiagonalOccupiedBySamePlayer()).isTrue();
     }
+
+    @Test
+    public void checkSecondDiagonalOccupiedBySamePlayer() {
+
+        gameBoard.setPlayerInPosition(Position.TWO, Player.X);
+        gameBoard.setPlayerInPosition(Position.THREE, Player.O);
+        gameBoard.setPlayerInPosition(Position.SIX, Player.X);
+        gameBoard.setPlayerInPosition(Position.FIVE, Player.O);
+        gameBoard.setPlayerInPosition(Position.ONE, Player.X);
+        gameBoard.setPlayerInPosition(Position.SEVEN, Player.O);
+
+        assertThat(gameBoard.isSecondDiagonalOccupiedBySamePlayer()).isTrue();
+    }
 }
