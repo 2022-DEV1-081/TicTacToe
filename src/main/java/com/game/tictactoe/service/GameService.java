@@ -25,11 +25,15 @@ public class GameService {
 
         validateCurrentTurn(player, position);
         savePlayerOnBoard(player, position);
-        if (gameBoard.isAnyOneOfThreeRowsOccupiedBySamePlayer() || gameBoard.isAnyOfThreeColumnsOccupiedBySamePlayer()
-                || gameBoard.isAnyOfTwoDiagonalOccupiedBySamePlayer()) {
+        if (isWinnerAvailable()) {
             return new GameResponse(String.format("Player %s won the game", player), "GAME_OVER");
         }
         return new GameResponse("GAME_IN_PROGRESS", getNextPlayer(player), player);
+    }
+
+    private boolean isWinnerAvailable() {
+        return gameBoard.isAnyOneOfThreeRowsOccupiedBySamePlayer() || gameBoard.isAnyOfThreeColumnsOccupiedBySamePlayer()
+                || gameBoard.isAnyOfTwoDiagonalOccupiedBySamePlayer();
     }
 
     private void savePlayerOnBoard(Player player, int position) {
