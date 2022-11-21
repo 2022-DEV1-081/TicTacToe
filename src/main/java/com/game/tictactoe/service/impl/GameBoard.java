@@ -47,4 +47,13 @@ public class GameBoard {
         }
         return false;
     }
+
+    public boolean isThirdRowOccupiedBySamePlayer() {
+
+        if (getPlayerInPosition(Position.SEVEN) != EMPTY_POSITION_ON_BOARD) {
+            return (getPlayerInPosition(Position.SEVEN) == getPlayerInPosition(Position.EIGHT) &&
+                    getPlayerInPosition(Position.EIGHT) == getPlayerInPosition(Position.NINE));
+        }
+        return false;
+    }
 }
