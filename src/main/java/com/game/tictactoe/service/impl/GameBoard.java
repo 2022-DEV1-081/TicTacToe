@@ -30,7 +30,11 @@ public class GameBoard {
                 .count();
     }
 
-    public boolean isFirstRowOccupiedBySamePlayer() {
+    public boolean isAnyOneOfThreeRowsOccupiedBySamePlayer() {
+        return isFirstRowOccupiedBySamePlayer() || isSecondRowOccupiedBySamePlayer() || isThirdRowOccupiedBySamePlayer();
+    }
+
+    protected boolean isFirstRowOccupiedBySamePlayer() {
 
         if (getPlayerInPosition(Position.ONE) != EMPTY_POSITION_ON_BOARD) {
             return (getPlayerInPosition(Position.ONE) == getPlayerInPosition(Position.TWO) &&
@@ -39,7 +43,7 @@ public class GameBoard {
         return false;
     }
 
-    public boolean isSecondRowOccupiedBySamePlayer() {
+    protected boolean isSecondRowOccupiedBySamePlayer() {
 
         if (getPlayerInPosition(Position.FOUR) != EMPTY_POSITION_ON_BOARD) {
             return (getPlayerInPosition(Position.FOUR) == getPlayerInPosition(Position.FIVE) &&
@@ -48,7 +52,7 @@ public class GameBoard {
         return false;
     }
 
-    public boolean isThirdRowOccupiedBySamePlayer() {
+    protected boolean isThirdRowOccupiedBySamePlayer() {
 
         if (getPlayerInPosition(Position.SEVEN) != EMPTY_POSITION_ON_BOARD) {
             return (getPlayerInPosition(Position.SEVEN) == getPlayerInPosition(Position.EIGHT) &&
