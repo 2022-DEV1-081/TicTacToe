@@ -81,4 +81,16 @@ public class GameBoardTests {
 
         assertThat(gameBoard.isFirstColumnOccupiedBySamePlayer()).isTrue();
     }
+
+    @Test
+    public void checkSecondColumnOccupiedBySamePlayer() {
+
+        gameBoard.setPlayerInPosition(Position.TWO, Player.X);
+        gameBoard.setPlayerInPosition(Position.THREE, Player.O);
+        gameBoard.setPlayerInPosition(Position.FIVE, Player.X);
+        gameBoard.setPlayerInPosition(Position.SEVEN, Player.O);
+        gameBoard.setPlayerInPosition(Position.EIGHT, Player.X);
+
+        assertThat(gameBoard.isSecondColumnOccupiedBySamePlayer()).isTrue();
+    }
 }
