@@ -48,11 +48,15 @@ public class GameService {
         if (isWinnerAvailable()) {
             resetGameState();
             return new GameResponse(String.format("Player %s won the game", player), GameStatus.GAME_OVER.getStatus());
-        } else if (gameBoard.isBoardFull()) {
+        } else if (isGameTie()) {
             resetGameState();
             return new GameResponse("Game is a Tie", GameStatus.GAME_OVER.getStatus());
         }
         return new GameResponse(GameStatus.GAME_IN_PROGRESS.getStatus(), getNextPlayer(player), player);
+    }
+
+    private boolean isGameTie() {
+        return gameBoard.isBoardFull();
     }
 
     private void resetGameState() {
