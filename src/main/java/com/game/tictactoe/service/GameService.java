@@ -1,6 +1,7 @@
 package com.game.tictactoe.service;
 
 import com.game.tictactoe.domain.GameResponse;
+import com.game.tictactoe.domain.GameStatus;
 import com.game.tictactoe.domain.Player;
 import com.game.tictactoe.domain.Position;
 import com.game.tictactoe.exception.InvalidPositionException;
@@ -41,12 +42,12 @@ public class GameService {
 
         if (isWinnerAvailable()) {
             resetGameState();
-            return new GameResponse(String.format("Player %s won the game", player), "GAME_OVER");
+            return new GameResponse(String.format("Player %s won the game", player), GameStatus.GAME_OVER.getStatus());
         } else if (gameBoard.isBoardFull()) {
             resetGameState();
-            return new GameResponse("Game is a Tie", "GAME_OVER");
+            return new GameResponse("Game is a Tie", GameStatus.GAME_OVER.getStatus());
         }
-        return new GameResponse("GAME_IN_PROGRESS", getNextPlayer(player), player);
+        return new GameResponse(GameStatus.GAME_IN_PROGRESS.getStatus(), getNextPlayer(player), player);
     }
 
     private void resetGameState() {

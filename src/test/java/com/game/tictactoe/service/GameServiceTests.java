@@ -1,5 +1,6 @@
 package com.game.tictactoe.service;
 
+import com.game.tictactoe.domain.GameStatus;
 import com.game.tictactoe.domain.Player;
 import com.game.tictactoe.domain.Position;
 import com.game.tictactoe.exception.InvalidPositionException;
@@ -73,7 +74,7 @@ public class GameServiceTests {
         gameService.playGame(Player.X, Position.TWO.getValue());
         gameService.playGame(Player.O, Position.NINE.getValue());
 
-        assertThat(gameService.playGame(Player.X, Position.ONE.getValue()).getStatus()).isEqualTo("GAME_OVER");
+        assertThat(gameService.playGame(Player.X, Position.ONE.getValue()).getStatus()).isEqualTo(GameStatus.GAME_OVER.getStatus());
     }
 
     @Test
@@ -85,7 +86,7 @@ public class GameServiceTests {
         gameService.playGame(Player.O, Position.SIX.getValue());
         gameService.playGame(Player.X, Position.FOUR.getValue());
 
-        assertThat(gameService.playGame(Player.O, Position.NINE.getValue()).getStatus()).isEqualTo("GAME_OVER");
+        assertThat(gameService.playGame(Player.O, Position.NINE.getValue()).getStatus()).isEqualTo(GameStatus.GAME_OVER.getStatus());
     }
 
     @Test
@@ -96,7 +97,7 @@ public class GameServiceTests {
         gameService.playGame(Player.X, Position.FIVE.getValue());
         gameService.playGame(Player.O, Position.SIX.getValue());
 
-        assertThat(gameService.playGame(Player.X, Position.NINE.getValue()).getStatus()).isEqualTo("GAME_OVER");
+        assertThat(gameService.playGame(Player.X, Position.NINE.getValue()).getStatus()).isEqualTo(GameStatus.GAME_OVER.getStatus());
     }
 
     @Test
@@ -123,8 +124,8 @@ public class GameServiceTests {
         gameService.playGame(Player.O, Position.SIX.getValue());
         gameService.playGame(Player.X, Position.FOUR.getValue());
 
-        assertThat(gameService.playGame(Player.O, Position.NINE.getValue()).getStatus()).isEqualTo("GAME_OVER");
-        assertThat(gameService.playGame(Player.X, Position.ONE.getValue()).getStatus()).isEqualTo("GAME_IN_PROGRESS");
+        assertThat(gameService.playGame(Player.O, Position.NINE.getValue()).getStatus()).isEqualTo(GameStatus.GAME_OVER.getStatus());
+        assertThat(gameService.playGame(Player.X, Position.ONE.getValue()).getStatus()).isEqualTo(GameStatus.GAME_IN_PROGRESS.getStatus());
     }
 
     @Test
@@ -140,6 +141,6 @@ public class GameServiceTests {
         gameService.playGame(Player.O, Position.FOUR.getValue());
 
         assertThat(gameService.playGame(Player.X, Position.SIX.getValue()).getResult()).isEqualTo("Game is a Tie");
-        assertThat(gameService.playGame(Player.X, Position.ONE.getValue()).getStatus()).isEqualTo("GAME_IN_PROGRESS");
+        assertThat(gameService.playGame(Player.X, Position.ONE.getValue()).getStatus()).isEqualTo(GameStatus.GAME_IN_PROGRESS.getStatus());
     }
 }
