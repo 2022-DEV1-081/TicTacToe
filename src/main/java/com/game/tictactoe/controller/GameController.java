@@ -11,12 +11,10 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/tic-tac-toe")
 public class GameController {
 
     private final GameService gameService;
@@ -33,7 +31,7 @@ public class GameController {
             @ApiResponse(responseCode = "409", description = "Invalid Position parameter",
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = ErrorResponse.class))})})
-    @PostMapping(value = "/tic-tac-toe/play/{player}/{position}")
+    @PostMapping(value = "/play/{player}/{position}")
     public ResponseEntity<GameResponse> playGameHandler(@PathVariable(name = "player") Player player,
                                                         @PathVariable(name = "position") int position) {
 
@@ -43,7 +41,7 @@ public class GameController {
     @Operation(summary = "Reset Tic Tac Toe Game")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Reset Successful")})
-    @PutMapping(value = "/tic-tac-toe/reset-game")
+    @PutMapping(value = "/reset-game")
     public ResponseEntity<String> resetGameHandler() {
 
         return ResponseEntity.status(HttpStatus.OK).body(gameService.resetGame());
