@@ -1,14 +1,11 @@
 package com.game.tictactoe.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
 public class ErrorResponse {
 
     private String warning;
-
-    public ErrorResponse(String warning) {
-        this.warning = warning;
-    }
-
-    public String getWarning() {
-        return warning;
-    }
 }

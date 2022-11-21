@@ -1,5 +1,8 @@
 package com.game.tictactoe.domain;
 
+import lombok.Getter;
+
+@Getter
 public class GameResponse {
 
     private String result;
@@ -16,21 +19,5 @@ public class GameResponse {
         this.status = status;
         this.nextPlayer = nextPlayer;
         this.currentPlayer = currentPlayer;
-    }
-
-    public String getResult() {
-        return result;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public Player getNextPlayer() {
-        return nextPlayer;
-    }
-
-    public Player getCurrentPlayer() {
-        return currentPlayer;
     }
 }
