@@ -12,6 +12,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -36,7 +37,9 @@ public class GameControllerTests {
         when(gameService.playGame(Player.X, Position.ONE.getValue()))
                 .thenReturn(new GameResponse("GAME_IN_PROGRESS", Player.O, Player.X));
 
-        mvc.perform(post("/tic-tac-toe/play/{player}/{position}", Player.X, Position.ONE.getValue()))
+        mvc.perform(post("/tic-tac-toe/play")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{ \"player\": \"X\", \"position\": 1 }"))
                 .andExpect(status().isOk());
     }
 
@@ -46,7 +49,9 @@ public class GameControllerTests {
         when(gameService.playGame(Player.O, Position.TWO.getValue()))
                 .thenThrow(new InvalidTurnException("Player X should move first"));
 
-        mvc.perform(post("/tic-tac-toe/play/{player}/{position}", Player.O, Position.TWO.getValue()))
+        mvc.perform(post("/tic-tac-toe/play")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{ \"player\": \"O\", \"position\": 2 }"))
                 .andExpect(status().isForbidden());
     }
 
@@ -56,7 +61,9 @@ public class GameControllerTests {
         when(gameService.playGame(Player.X, Position.FIVE.getValue()))
                 .thenThrow(new PositionOccupiedException("Position %s is already occupied"));
 
-        mvc.perform(post("/tic-tac-toe/play/{player}/{position}", Player.X, Position.FIVE.getValue()))
+        mvc.perform(post("/tic-tac-toe/play")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{ \"player\": \"X\", \"position\": 5 }"))
                 .andExpect(status().isForbidden());
     }
 
@@ -66,7 +73,9 @@ public class GameControllerTests {
         when(gameService.playGame(Player.X, Position.DEFAULT.getValue()))
                 .thenThrow(new InvalidPositionException("Position %s is already occupied"));
 
-        mvc.perform(post("/tic-tac-toe/play/{player}/{position}", Player.X, Position.DEFAULT.getValue()))
+        mvc.perform(post("/tic-tac-toe/play")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{ \"player\": \"X\", \"position\": 0 }"))
                 .andExpect(status().isForbidden());
     }
 
