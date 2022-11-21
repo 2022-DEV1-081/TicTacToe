@@ -69,4 +69,16 @@ public class GameBoardTests {
 
         assertThat(gameBoard.isThirdRowOccupiedBySamePlayer()).isTrue();
     }
+
+    @Test
+    public void checkFirstColumnOccupiedBySamePlayer() {
+
+        gameBoard.setPlayerInPosition(Position.ONE, Player.X);
+        gameBoard.setPlayerInPosition(Position.THREE, Player.O);
+        gameBoard.setPlayerInPosition(Position.FOUR, Player.X);
+        gameBoard.setPlayerInPosition(Position.FIVE, Player.O);
+        gameBoard.setPlayerInPosition(Position.SEVEN, Player.X);
+
+        assertThat(gameBoard.isFirstColumnOccupiedBySamePlayer()).isTrue();
+    }
 }
