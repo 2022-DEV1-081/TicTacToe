@@ -25,6 +25,11 @@ public class GameService {
 
         validateCurrentTurn(player, position);
         savePlayerOnBoard(player, position);
+        return validateGameAndSendResponse(player);
+    }
+
+    private GameResponse validateGameAndSendResponse(Player player) {
+
         if (isWinnerAvailable()) {
             return new GameResponse(String.format("Player %s won the game", player), "GAME_OVER");
         } else if (gameBoard.isBoardFull()) {
