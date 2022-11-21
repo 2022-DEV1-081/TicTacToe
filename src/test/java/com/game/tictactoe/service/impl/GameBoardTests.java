@@ -131,4 +131,20 @@ public class GameBoardTests {
 
         assertThat(gameBoard.isSecondDiagonalOccupiedBySamePlayer()).isTrue();
     }
+
+    @Test
+    public void shouldDeclareGameAsTieIfAllPositionsAreFilled() {
+
+        gameBoard.setPlayerInPosition(Position.ONE, Player.X);
+        gameBoard.setPlayerInPosition(Position.THREE, Player.O);
+        gameBoard.setPlayerInPosition(Position.TWO, Player.X);
+        gameBoard.setPlayerInPosition(Position.FIVE, Player.O);
+        gameBoard.setPlayerInPosition(Position.SEVEN, Player.X);
+        gameBoard.setPlayerInPosition(Position.EIGHT, Player.O);
+        gameBoard.setPlayerInPosition(Position.NINE, Player.X);
+        gameBoard.setPlayerInPosition(Position.FOUR, Player.O);
+        gameBoard.setPlayerInPosition(Position.SIX, Player.X);
+
+        assertThat(gameBoard.isBoardFull()).isTrue();
+    }
 }
