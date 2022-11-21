@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -23,5 +24,11 @@ public class GameController {
                                                         @PathVariable(name = "position") int position) {
 
         return ResponseEntity.status(HttpStatus.OK).body(gameService.playGame(player, position));
+    }
+
+    @PutMapping(value = "/tic-tac-toe/reset-game")
+    public ResponseEntity<String> resetGameHandler() {
+
+        return ResponseEntity.status(HttpStatus.OK).body(gameService.resetGame());
     }
 }
