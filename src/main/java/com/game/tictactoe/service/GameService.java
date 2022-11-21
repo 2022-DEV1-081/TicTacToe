@@ -67,7 +67,7 @@ public class GameService {
     }
 
     private boolean isFirstTurn() {
-        return gameBoard.getCountOfPositionsOccupied() == ZERO;
+        return previousPlayer == ZERO;
     }
 
     private Player getNextPlayer(Player player) {
