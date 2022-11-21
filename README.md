@@ -48,3 +48,13 @@ Develop a simple Tic Tac Toe game written in Java and Spring Boot using Test Dri
                     
   java -jar build/libs/TicTacToe.jar --server.port=8082
 ```
+
+## **How to access the code coverage report**
+
+Please follow below-mentioned steps to access code coverage report.
+
+1. Clone the repository ```https://github.com/2022-DEV1-081/TicTacToe.git```
+2. Open CMD or Git Bash Terminal
+   - `gradlew clean build`
+3. After successful build, you can find the report in below path
+   - $buildDir/reports/jacoco/index.html
