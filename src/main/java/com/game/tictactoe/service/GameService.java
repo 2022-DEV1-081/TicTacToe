@@ -30,12 +30,17 @@ public class GameService {
 
     public GameResponse playGame(Player player, int position) {
 
-        if (isFirstTurn()) {
-            gameBoard.initializeGameBoard();
-        }
+        initializeGameBoardOnFirstTurn();
         validateCurrentTurn(player, position);
         savePlayerOnBoard(player, position);
         return validateGameAndSendResponse(player);
+    }
+
+    private void initializeGameBoardOnFirstTurn() {
+
+        if (isFirstTurn()) {
+            gameBoard.initializeGameBoard();
+        }
     }
 
     private GameResponse validateGameAndSendResponse(Player player) {
